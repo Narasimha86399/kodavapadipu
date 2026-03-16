@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kodava Padipu - Learn & Quiz</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Kannada:wght@400;700&family=Noto+Serif+Malayalam:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #80004d;
+      --secondary-color: #5d0fee;
+      --success-color: #28a745;
+      --wrong-color: #dc3545;
+    }
+
+    body {
+      font-family: 'Noto Serif Kannada', 'Noto Serif Malayalam', serif;
+      background: #f9f9f9;
+      margin: 0;
+      text-align: center;
+      color: #333;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 30px 10px;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .Kodava-logo { width: 120px; height: auto; }
+    h1 { margin: 0; font-size: 32px; }
+
+    nav {
+  background-color: #f2f2f2;
+  padding: 12px;
+  border-bottom: 2px solid #ddd;
+  display: flex;
+  justify-content: center;
+  gap: 10px;          /* Reduced gap slightly for better fit */
+  row-gap: 15px;      /* Adds vertical space between rows */
+  align-items: center;
+  flex-wrap: wrap;    /* THIS IS THE KEY: allows items to wrap to a second line */
+}
+    .nav-box {
+      text-decoration: none;
+      font-weight: bold;
+      padding: 12px 24px;
+      border-radius: 10px;
+      color: white !important;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-box:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); filter: brightness(1.1); }
+    
+    .nav-home { background-color: #555; }
+    .nav-letters { background-color: #e67e22; }
+    .nav-animals { background-color: #27ae60; }
+    .nav-insects { background-color: #2980b9; }
+    .nav-households { background-color: #e213c0; }
+    .nav-relations { background-color: #12e8f0; }
+    .nav-pronouns { background-color: #1d06ec; }
+    .nav-time { background-color: #d63a0a; }
+    .nav-body { background-color: #06e951; }
+    .nav-colours { background-color: #0a0b0c; }
+    .nav-numbers { background-color: #8de763; }
+    .nav-verbs { background-color: #79261b; }
+    nav a, .lang-btn {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+      background: white;
+      border: 2px solid var(--primary-color);
+      padding: 8px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .lang-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Automatically fits more items per row */
+  gap: 15px;
+  max-width: 950px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+    .gallery-item {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .gallery-item:hover { transform: scale(1.02); }
+    .gallery-item img { 
+  width: 100%; 
+  height: 150px; /* Reduced from 200px */
+  object-fit: contain; /* Shows full image without cropping */
+  background: #f0f0f0; /* Adds a light background for transparent images */
+  border-radius: 8px; 
+}
+    
+    /* Style for the multi-part label */
+    .word-label {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .word-kodava { font-size: 22px; color: var(--primary-color); font-weight: bold; }
+    .word-eng { font-size: 16px; color: #666; font-style: italic; }
+    .word-mean { font-size: 18px; color: #333; border-top: 1px solid #eee; padding-top: 5px; }
+
+    #quiz-section {
+      display: none;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+    }
+
+    .flashcard-image img { 
+  max-width: 100%; 
+  max-height: 200px; /* Reduced from 300px */
+  object-fit: contain; 
+  border-radius: 10px; 
+  margin-bottom: 10px;
+}
+    .kannadaWord { font-size: 36px; margin: 20px 0; color: var(--primary-color); }
+    .options { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+
+    .option {
+      padding: 15px 30px;
+      font-size: 22px;
+      background: #fff;
+      border: 2px solid var(--secondary-color);
+      border-radius: 12px;
+      cursor: pointer;
+      min-width: 180px;
+      transition: 0.2s;
+    }
+
+    .option.correct { background-color: #90ee90 !important; border-color: var(--success-color) !important; }
+    .option.wrong { background-color: #ffcccb !important; border-color: var(--wrong-color) !important; }
+
+    .btn-start {
+      background: var(--primary-color);
+      color: white;
+      padding: 18px 60px;
+      font-size: 24px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 40px 0;
+      box-shadow: 0 4px 15px rgba(128, 0, 77, 0.3);
+    }
+
+    #progress { height: 12px; width: 80%; background: #eee; margin: 30px auto 10px; border-radius: 10px; overflow: hidden; }
+    #bar { height: 100%; width: 0%; background: var(--success-color); transition: 0.4s; }
+
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center; align-items: center;
+    }
+    #modal img { max-width: 90%; max-height: 85%; border: 4px solid white; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <img src="kodavalogo.png" alt="Kodava-logo" class="Kodava-logo">
+      <h1 id="main-title">ಕೊಡವ ಪಡಿಪು</h1>
+    </div>
+  </header>
+<nav>
+    <a href="index.html" class="nav-box nav-home"><i class="fas fa-home"></i> Home</a>
+    <a href="letters.html" class="nav-box nav-letters"><i class="fas fa-font"></i> Letters</a>
+    <a href="animals.html" class="nav-box nav-animals"><i class="fas fa-paw"></i> Animals</a>
+    <a href="insects.html" class="nav-box nav-insects"><i class="fas fa-bug"></i> Insects</a>
+    <a href="households.html" class="nav-box nav-households"><i class="fas fa-couch"></i> Households</a>
+    <a href="relations.html" class="nav-box nav-relations"><i class="fas fa-users"></i> Relations</a>
+    <a href="pronouns.html" class="nav-box nav-pronouns"><i class="fas fa-user-tag"></i> Pronouns</a>
+    <a href="time.html" class="nav-box nav-time"><i class="fas fa-clock"></i> Time</a>
+    <a href="body.html" class="nav-box nav-body"><i class="fas fa-child"></i> Body</a>
+    <a href="colours.html" class="nav-box nav-colours"><i class="fas fa-palette"></i> Colours</a>
+    <a href="numbers.html" class="nav-box nav-numbers"><i class="fas fa-list-ol"></i> Numbers</a>
+     <a href="verbs.html" class="nav-box nav-numbers"><i class="fas fa-running"></i> Verbs</a>
+  </nav>
+  <nav>
+    <button id="btn-kn" class="lang-btn active" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+    <button id="btn-ml" class="lang-btn" onclick="setLanguage('ml')">മലയാളം</button>
+  </nav>
+
+  <div id="home-screen">
+    <div class="gallery-container" id="gallery"></div>
+    <button class="btn-start" onclick="startQuiz()">Start Quiz</button>
+  </div>
+
+  <div id="quiz-section">
+    <div class="kannadaWord" id="kodavaWordDisplay"></div>
+    <div class="options" id="optionButtons"></div>
+    <div id="progress"><div id="bar"></div></div>
+    <p id="scoreText">Score: 0 / 0</p>
+    <button onclick="location.reload()" style="margin-top:20px; background:none; border:none; color:grey; cursor:pointer;">Quit Quiz</button>
+  </div>
+
+  <div id="modal" onclick="this.style.display='none'">
+    <img id="modalImg" src="">
+  </div>
+
+  <script>
+    const quizData = [
+      { img: 'body.jpg', eng: 'taḍi', kn_kodava: 'ತಡಿ', ml_kodava: 'തഡി', kn_mean: 'ದೇಹ', ml_mean: 'ശരീരം' },
+      { img: 'eye.jpg', eng: 'kaṇṇ', kn_kodava: 'ಕಣ್ಣ್', ml_kodava: 'കണ്ണ്', kn_mean: 'ಕಣ್ಣು', ml_mean: 'കണ്ണു' },
+      { img: 'eyelash.jpg', eng: 'kaṇṇra rĕppĕ', kn_kodava: 'ಕಣ್ಣ್‍ರ ರೆಪ್ಪೆ', ml_kodava: "കണ്ണ്'ര രെപ്പെ", kn_mean: 'ಕಣ್ಣಿನ ರೆಪ್ಪೆಗೂದಲು', ml_mean: 'കൺപീലി' },
+      { img: 'eyebrows.jpg', eng: 'kuyibu', kn_kodava: 'ಕುಯಿಬು', ml_kodava: "കുയിബു", kn_mean: 'ಹುಬ್ಬು', ml_mean: 'പുരികം' },
+      { img: 'eyelid.jpg', eng: 'kaṇṇra carṭĕ', kn_kodava: 'ಕಣ್ಣ್‍ರ ಚರ್ಟೆ', ml_kodava: "കണ്ണ്'ര ചർടെ", kn_mean: 'ಕಣ್ಣಿನ ರೆಪ್ಪೆ', ml_mean: 'കൺപോള' },
+      { img: 'ear.jpg', eng: 'kĕmi', kn_kodava: 'ಕೆಮಿ', ml_kodava: 'കെമി', kn_mean: 'ಕಿವಿ', ml_mean: 'ചെവി' },
+      { img: 'face.jpg', eng: 'mūḍ', kn_kodava: 'ಮೂಡ್', ml_kodava: 'മൂഡ്', kn_mean: 'ಮುಖ', ml_mean: 'മുഖം' },
+      { img: 'head.jpg', eng: 'maṇḍĕ', kn_kodava: 'ಮಂಡೆ', ml_kodava: 'മണ്ഡെ', kn_mean: 'ತಲೆ', ml_mean: 'തല' },
+      { img: 'forehead.jpg', eng: 'nĕtti', kn_kodava: 'ನೆತ್ತಿ', ml_kodava: 'നെത്തി', kn_mean: 'ಹಣೆ', ml_mean: 'നെറ്റി' },
+      { img: 'hair.jpg', eng: 'talmi', kn_kodava: 'ತಲ್‍ಮಿ', ml_kodava: 'തൽമി', kn_mean: 'ಕೂದಲು', ml_mean: 'മുടി' },
+      { img: 'moustache.jpg', eng: 'mīsĕ', kn_kodava: 'ಮೀಸೆ', ml_kodava: 'മീസെ', kn_mean: 'ಮೀಸೆ', ml_mean: 'മീശ' },
+      { img: 'skull.jpg', eng: 'maṇḍĕra oḍ', kn_kodava: 'ಮಂಡೆರ ಓಡ್', ml_kodava: 'മണ്ഡെര ഓഡ്', kn_mean: 'ತಲೆಬುರುಡೆ', ml_mean: 'തലയോട്ടി' },
+      { img: 'gums.jpg', eng: 'ūn', kn_kodava: 'ಊನ್', ml_kodava: 'ഊൻ', kn_mean: 'ಹಲ್ಲುಸಂದಿ', ml_mean: 'പല്ലിന്റെ മോണ' },
+      { img: 'lips.jpg', eng: 'kiri', kn_kodava: 'ಕಿರಿ', ml_kodava: 'കിരി', kn_mean: 'ತುಟಿಗಳು', ml_mean: 'ചുണ്ടുകൾ' },
+      { img: 'tongue.jpg', eng: 'nāv', kn_kodava: 'ನಾವ್', ml_kodava: 'നാവ്', kn_mean: 'ನಾಲಿಗೆ', ml_mean: 'നാവ്' },
+      { img: 'uvula.jpg', eng: 'kr nāvu', kn_kodava: 'ಕ್‍ರ್ ನಾವು', ml_kodava: "ക്'ര് നാവു", kn_mean: 'ಕಿರುನಾಲಿಗೆ', ml_mean: 'ഉണ്ണാക്ക്' },
+      { img: 'chin.jpg', eng: 'tāḍikuṭṭ', kn_kodava: 'ತಾಡಿಕುಟ್ಟ್', ml_kodava: 'താഡികുട്ട്', kn_mean: 'ಗಲ್ಲ', ml_mean: 'താടി' },
+      { img: 'beard.jpg', eng: 'tāḍi', kn_kodava: 'ತಾಡಿ', ml_kodava: 'താഡി', kn_mean: 'ಗಡ್ಡ', ml_mean: 'താടി' },
+      { img: 'jaw.jpg', eng: 'davaḍĕ', kn_kodava: 'ದವಡೆ', ml_kodava: 'ദവഡെ', kn_mean: 'ಕೆನ್ನೆ/ದವಡೆ', ml_mean: 'കവിൾ/താടിയെല്ല്' },
+      { img: 'nose.jpg', eng: 'mūk ', kn_kodava: 'ಮೂಕ್', ml_kodava: 'മൂക്', kn_mean: 'ಮೂಗು', ml_mean: 'മൂക്ക്' },
+      { img: 'teeth.jpg', eng: 'pall', kn_kodava: 'ಪಲ್ಲ್', ml_kodava: 'പല്ല്', kn_mean: 'ಹಲ್ಲುಗಳು', ml_mean: 'പല്ലുകൾ' },
+      { img: 'hand.jpg', eng: 'kai', kn_kodava: 'ಕೈ', ml_kodava: 'കൈ', kn_mean: 'ಕೈ', ml_mean: 'കൈ' },
+      { img: 'leg.jpg', eng: 'kāl', kn_kodava: 'ಕಾಲ್', ml_kodava: 'കാൽ', kn_mean: 'ಕಾಲು', ml_mean: 'കാൽ' },
+      { img: 'nail.jpg', eng: 'ŏmi, ŏy', kn_kodava: 'ಒಮಿ, ಒಯ್', ml_kodava: 'ഒമി, ഒയ്', kn_mean: 'ಉಗುರು', ml_mean: 'നഖം' },
+      { img: 'palm.jpg', eng: 'aṁgai', kn_kodava: 'ಅಂಗೈ', ml_kodava: 'അംഗൈ', kn_mean: 'ಅಂಗೈ', ml_mean: 'ഉള്ളംകൈ' },
+      { img: 'thigh.jpg', eng: 'tŏḍĕ', kn_kodava: 'ತೊಡೆ', ml_kodava: 'തൊഡെ', kn_mean: 'ತೊಡೆಯ', ml_mean: 'തുട' },
+      { img: 'ankle.jpg', eng: 'kālra karaḍ', kn_kodava: 'ಕಾಲ್‍ರ ಕರಡ್', ml_kodava: 'കാൽര കരഡ്', kn_mean: 'ಕಣಕಾಲು', ml_mean: 'കണങ്കാൽ' },
+      { img: 'foot.jpg', eng: 'meṁgāl', kn_kodava: 'ಮೇಂಗಾಲ್', ml_kodava: 'മേംഗാൽ', kn_mean: 'ಚರಣ', ml_mean: 'പാദം' },
+      { img: 'kneecap.jpg', eng: 'kālra caraṭĕ', kn_kodava: 'ಕಾಲ್‍ರ ಚರಟೆ', ml_kodava: 'കാൽര ചരടെ', kn_mean: 'ಮಂಡಿಚಿಪ್ಪು', ml_mean: 'മുട്ടുകുത്തി' },
+      { img: 'toe.jpg', eng: 'mŏṭṭ bĕra', kn_kodava: 'ಮೊಟ್ಟ್ ಬೆರ', ml_kodava: 'മൊട്ട് ബെര', kn_mean: 'ಹೆಬ್ಬೆಟ್ಟು', ml_mean: 'കാൽവിരൽ' },
+      { img: 'back.jpg', eng: 'bĕnn', kn_kodava: 'ಬೆನ್ನ್', ml_kodava: 'ബെന്ന്', kn_mean: 'ಬೆನ್ನು', ml_mean: 'പുറം' },
+      { img: 'heel.jpg', eng: 'muḍi', kn_kodava: 'ಮುಡಿ', ml_kodava: 'മുഡി', kn_mean: 'ಹಿಮ್ಮಡಿ', ml_mean: 'കുതികാൽ' },
+      { img: 'neck.jpg', eng: 'boḷĕ', kn_kodava: 'ಬೋಳೆ', ml_kodava: 'ബോളെ', kn_mean: 'ಕುತ್ತಿಗೆ', ml_mean: 'കഴുത്ത്' },
+      { img: 'throat.jpg', eng: 'tŏṇḍĕ', kn_kodava: 'ತೊಂಡೆ', ml_kodava: 'തൊണ്ഡെ', kn_mean: 'ಗಂಟಲು', ml_mean: 'തൊണ്ട' },
+      { img: 'backbone.jpg', eng: 'bĕnn mūḷĕ', kn_kodava: 'ಬೆನ್ನ್ ಮೂಳೆ', ml_kodava: 'ബെന്ന് മൂളെ', kn_mean: 'ಬೆನ್ನೆಲುಬು', ml_mean: 'നട്ടെല്ല്' },
+      { img: 'chest.jpg', eng: 'nĕññi', kn_kodava: 'ನೆಞ್ಞಿ', ml_kodava: 'നെഞ്ഞി', kn_mean: 'ಎದೆ', ml_mean: 'നെഞ്ച്' },
+      { img: 'nerve.jpg', eng: 'nara', kn_kodava: 'ನರ', ml_kodava: 'നര', kn_mean: 'ನರ', ml_mean: 'ഞരമ്പ്' },
+      { img: 'blood.jpg', eng: 'corĕ', kn_kodava: 'ಚೋರೆ', ml_kodava: 'ചോരെ', kn_mean: 'ರಕ್ತ', ml_mean: 'രക്തം' },
+      { img: 'bone.jpg', eng: 'mūḷĕ', kn_kodava: 'ಮೂಳೆ', ml_kodava: 'മൂളെ', kn_mean: 'ಎಲುಬು', ml_mean: 'എല്ല്' },
+      { img: 'heart.jpg', eng: 'tŏṁbĕ', kn_kodava: 'ತೊಂಬೆ', ml_kodava: 'തൊംബെ', kn_mean: 'ಹೃದಯ', ml_mean: 'ഹൃദയം' },
+      { img: 'kidney.jpg', eng: 'kāyi', kn_kodava: 'ಕಾಯಿ', ml_kodava: 'കായി', kn_mean: 'ಮೂತ್ರಪಿಂಡ', ml_mean: 'വൃക്ക' },
+      { img: 'ribcage.jpg', eng: 'bakkarĕ', kn_kodava: 'ಬಕ್ಕರೆ', ml_kodava: 'ബക്കരെ', kn_mean: 'ಎದೆಗೂಡು', ml_mean: 'വാരിയെല്ല്' },
+      { img: 'bloodvessel.jpg', eng: 'nĕru', kn_kodava: 'ನೆರು', ml_kodava: 'നെരു', kn_mean: 'ರಕ್ತನಾಳ', ml_mean: 'രക്തക്കുഴൽ' },
+      { img: 'intestine.jpg', eng: 'kar', kn_kodava: 'ಕರ್', ml_kodava: 'കർ', kn_mean: 'ಕರಳು', ml_mean: 'കുടൽ' },
+      { img: 'stomach.jpg', eng: 'kĕla', kn_kodava: 'ಕೆಲ', ml_kodava: 'കെല', kn_mean: 'ಹೊಟ್ಟೆ', ml_mean: 'വയർ' },
+      { img: 'shoulder.jpg', eng: 'nipp', kn_kodava: 'ನಿಪ್ಪ್', ml_kodava: 'നിപ്പ്', kn_mean: 'ಹೆಗಲು', ml_mean: 'തോൾ' },
+      { img: 'waist.jpg', eng: 'arĕ', kn_kodava: 'ಅರೆ', ml_kodava: 'അരെ', kn_mean: 'ಸೊಂಟ', ml_mean: 'അരക്കെട്ട്' },
+      { img: 'muscle.jpg', eng: 'kaṇḍa', kn_kodava: 'ಕಂಡ', ml_kodava: 'കണ്ഡ', kn_mean: 'ಸ್ನಾಯು', ml_mean: 'പേശി' },
+      { img: 'skin.jpg', eng: 'tol​', kn_kodava: 'ತೋಲ್​', ml_kodava: 'തോൽ​', kn_mean: 'ಚರ್ಮ', ml_mean: 'തൊലി' },
+      { img: 'fingers.jpg', eng: 'bĕra', kn_kodava: 'ಬೆರ', ml_kodava: 'ബെര', kn_mean: 'ಬೆರಳುಗಳು', ml_mean: 'വിരലുകൾ' },
+      { img: 'thumb.jpg', eng: 'pĕbbaṭṭ', kn_kodava: 'ಪೆಬ್ಬಟ್ಟ್', ml_kodava: 'പെബ്ബട്ട്', kn_mean: 'ಹೆಬ್ಬೆರಳು', ml_mean: 'തള്ളവിരൽ ' },
+      { img: 'indexfinger.jpg', eng: 'ciṭṭeka', kn_kodava: 'ಚಿಟ್ಟೇಕ', ml_kodava: 'ചിട്ടേക', kn_mean: 'ತೋರುಬೆರಳು', ml_mean: 'ചൂണ്ടുവിരൽ' },
+      { img: 'middlefinger.jpg', eng: 'nāṇyeka​​', kn_kodava: 'ನಾಣ್ಯೇಕ​​', ml_kodava: 'നാണ്യേക​​', kn_mean: 'ನಡುಬೆರಳು', ml_mean: 'നടുവിരൽ' },
+      { img: 'ringfinger.jpg', eng: 'koya bĕra​', kn_kodava: 'ಕೋಯ ಬೆರ​', ml_kodava: 'കോയ ബെര​', kn_mean: 'ಉಂಗುರದ ಬೆರಳು', ml_mean: 'മോതിരവിരൽ' },
+      { img: 'littlefinger.jpg', eng: 'ciṇṇi bĕra​', kn_kodava: 'ಚಿಣ್ಣಿ ಬೆರ​', ml_kodava: 'ചിണ്ണി ബെര​', kn_mean: 'ಕಿರುಬೆರಳು', ml_mean: 'ചെറുവിരൽ' },
+    ];
+
+    let currentLanguage = 'kn';
+    let currentQuizIndex = 0;
+    let score = 0;
+    let selectedSet = [];
+
+    function init() {
+      renderGallery();
+    }
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`btn-${lang}`).classList.add('active');
+      document.getElementById('main-title').textContent = (lang === 'kn') ? 'ಕೊಡವ ಪಡಿಪು' : 'കൊടവ പഠിപ്പു';
+      renderGallery();
+    }
+
+    function renderGallery() {
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+      quizData.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.onclick = () => zoomImage(item.img);
+        
+        const kodavaWord = (currentLanguage === 'kn') ? item.kn_kodava : item.ml_kodava;
+        const meaning = (currentLanguage === 'kn') ? item.kn_mean : item.ml_mean;
+        
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.eng}">
+          <div class="word-label">
+            <span class="word-kodava">${kodavaWord}</span>
+            <span class="word-eng">- ${item.eng} -</span>
+            <span class="word-mean">${meaning}</span>
+          </div>
+        `;
+        gallery.appendChild(div);
+      });
+    }
+
+    function zoomImage(src) {
+      document.getElementById('modalImg').src = src;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function startQuiz() {
+      document.getElementById('home-screen').style.display = 'none';
+      document.getElementById('quiz-section').style.display = 'block';
+      selectedSet = shuffleArray([...quizData]);
+      currentQuizIndex = 0;
+      score = 0;
+      loadCard();
+    }
+
+    function shuffleArray(arr) {
+      return arr.sort(() => Math.random() - 0.5);
+    }
+
+    function loadCard() {
+      if (currentQuizIndex >= selectedSet.length) {
+        alert(`Finished! Score: ${score} / ${selectedSet.length}`);
+        location.reload();
+        return;
+      }
+      const item = selectedSet[currentQuizIndex];
+      const wordDisplay = document.getElementById('kodavaWordDisplay');
+      const optionsDiv = document.getElementById('optionButtons');
+      wordDisplay.textContent = (currentLanguage === 'kn') ? item.kn_kodava : item.ml_kodava;
+
+      const correct = (currentLanguage === 'kn') ? item.kn_mean : item.ml_mean;
+      let options = [correct];
+      while (options.length < 4) {
+        let randomItem = quizData[Math.floor(Math.random() * quizData.length)];
+        let randomWord = (currentLanguage === 'kn') ? randomItem.kn_mean : randomItem.ml_mean;
+        if (!options.includes(randomWord)) options.push(randomWord);
+      }
+
+      optionsDiv.innerHTML = '';
+      shuffleArray(options).forEach(opt => {
+        const btn = document.createElement('div');
+        btn.className = 'option';
+        btn.textContent = opt;
+        btn.onclick = () => checkAnswer(opt, correct, btn);
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selected, correct, btn) {
+      const allBtns = document.querySelectorAll('.option');
+      allBtns.forEach(b => b.onclick = null);
+      if (selected === correct) {
+        btn.classList.add('correct');
+        score++;
+      } else {
+        btn.classList.add('wrong');
+        allBtns.forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
+      }
+      currentQuizIndex++;
+      setTimeout(() => {
+        document.getElementById('scoreText').textContent = `Score: ${score} / ${currentQuizIndex}`;
+        document.getElementById('bar').style.width = `${(currentQuizIndex / selectedSet.length) * 100}%`;
+        loadCard();
+      }, 1000);
+    }
+
+    init();
+  </script>
+</body>
+</html>
