@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kodava Padipu - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Kannada:wght@400;700&family=Noto+Serif+Malayalam:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-color: #80004d;
+      --secondary-color: #5d0fee;
+      --light-bg: #fdf2f8;
+    }
+
+    body {
+      font-family: 'Noto Serif Kannada', 'Noto Serif Malayalam', serif;
+      margin: 0;
+      background: #f9f9f9;
+      text-align: center;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 30px 10px;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .Kodava-logo { width: 120px; height: auto; }
+    h1 { margin: 0; font-size: 32px; }
+    /* --- Navigation Boxes --- */
+    nav {
+      background: #eee;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-box {
+      text-decoration: none;
+      font-weight: bold;
+      padding: 12px 24px;
+      border-radius: 10px;
+      color: white !important;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-box:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); filter: brightness(1.1); }
+    
+    .nav-home { background-color: #555; }
+    .nav-letters { background-color: #e67e22; }
+    .nav-animals { background-color: #27ae60; }
+    .nav-insects { background-color: #2980b9; }
+    .nav-households { background-color: #e213c0; }
+    .nav-relations { background-color: #12e8f0; }
+    .nav-pronouns { background-color: #1d06ec; }
+    .nav-time { background-color: #d63a0a; }
+    .nav-body { background-color: #06e951; }
+    .nav-colours { background-color: #0a0b0c; }
+    .nav-numbers { background-color: #8de763; }
+    .nav-verbs { background-color: #79261b; }
+
+    /* --- Language Toggle --- */
+    .lang-nav { background: #f2f2f2; border-bottom: 1px solid #ddd; padding: 10px; }
+    .lang-btn {
+      color: var(--primary-color);
+      font-weight: bold;
+      background: white;
+      border: 2px solid var(--primary-color);
+      padding: 6px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    .lang-btn.active { background: var(--primary-color); color: white; }
+
+    /* --- Category Grid --- */
+    .main-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .category-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .category-card:hover { transform: translateY(-5px); }
+    .category-card img { width: 100%; height: 200px; object-fit: cover; }
+    .category-card h3 { padding: 15px; margin: 0; color: var(--primary-color); }
+
+    /* --- Support Section --- */
+    .contribute-section {
+      background: var(--light-bg);
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 20px;
+      border: 2px dashed var(--primary-color);
+    }
+
+    .form-box input, .form-box textarea {
+      width: 90%; padding: 10px; margin: 8px 0;
+      border: 1px solid #ccc; border-radius: 8px;
+    }
+.qr-box {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+}
+.qr-box img {
+  width: 150px; /* Adjust this number to make it smaller or larger */
+  height: auto;
+  border-radius: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  padding: 5px;
+  background: white;
+}
+    .btn-pay { background: var(--primary-color); color: white; border: none; padding: 12px; border-radius: 5px; cursor: pointer; width: 90%; }
+
+    footer { background: #333; color: white; padding: 40px 20px; margin-top: 50px; }
+    .social-links a { color: white; font-size: 30px; margin: 0 15px; transition: 0.3s; }
+    .social-links a:hover { color: #ff0050; }
+    .youtube:hover { color: #ff0000 !important; }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="kodavalogo.png" alt="Logo" class="Kodava-logo">
+    <h1 id="main-title" data-kn="ಕೊಡವ ಪಡಿಪು" data-ml="കൊടവ പഠിപ്പു">ಕೊಡವ ಪಡಿಪು</h1>
+  </header>
+
+  <nav>
+    <a href="index.html" class="nav-box nav-home"><i class="fas fa-home"></i> Home</a>
+    <a href="letters.html" class="nav-box nav-letters"><i class="fas fa-font"></i> Letters</a>
+    <a href="animals.html" class="nav-box nav-animals"><i class="fas fa-paw"></i> Animals</a>
+    <a href="insects.html" class="nav-box nav-insects"><i class="fas fa-bug"></i> Insects</a>
+    <a href="households.html" class="nav-box nav-households"><i class="fas fa-couch"></i> Households</a>
+    <a href="relations.html" class="nav-box nav-relations"><i class="fas fa-users"></i> Relations</a>
+    <a href="pronouns.html" class="nav-box nav-pronouns"><i class="fas fa-user-tag"></i> Pronouns</a>
+    <a href="time.html" class="nav-box nav-time"><i class="fas fa-clock"></i> Time</a>
+    <a href="body.html" class="nav-box nav-body"><i class="fas fa-child"></i> Body</a>
+    <a href="colours.html" class="nav-box nav-colours"><i class="fas fa-palette"></i> Colours</a>
+    <a href="numbers.html" class="nav-box nav-numbers"><i class="fas fa-list-ol"></i> Numbers</a>
+     <a href="verbs.html" class="nav-box nav-numbers"><i class="fas fa-running"></i> Verbs</a>
+  </nav>
+
+  <div class="lang-nav">
+    <button id="btn-kn" class="lang-btn active" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+    <button id="btn-ml" class="lang-btn" onclick="setLanguage('ml')">മലയാളം</button>
+  </div>
+
+  <div class="main-grid">
+    <div class="category-card" onclick="window.location.href='letters.html'">
+      <img id="img-letters" src="letters.jpg" alt="Letters">
+      <h3 class="multi-lang" data-kn="ಅಕ್ಷರಗಳು (Letters)" data-ml="അക്ഷരങ്ങൾ (Letters)">ಅಕ್ಷರಗಳು (Letters)</h3>
+    </div>
+
+    <div class="category-card" onclick="window.location.href='animals.html'">
+      <img id="img-animals" src="animals.jpg" alt="Animals">
+      <h3 class="multi-lang" data-kn="ಪ್ರಾಣಿಗಳು (Animals)" data-ml="മൃഗങ്ങൾ (Animals)">ಪ್ರಾಣಿಗಳು (Animals)</h3>
+    </div>
+
+    <div class="category-card" onclick="window.location.href='insects.html'">
+      <img id="img-insects" src="insects.jpg" alt="Insects">
+      <h3 class="multi-lang" data-kn="ಕೀಟಗಳು (Insects)" data-ml="കീടങ്ങൾ (Insects)">ಕೀಟಗಳು (Insects)</h3>
+    </div>
+     <div class="category-card" onclick="window.location.href='households.html'">
+      <img id="img-households" src="households.jpg" alt="Households">
+      <h3 class="multi-lang" data-kn="ಮನೆಯ ವಸ್ತುಗಳು (Households)" data-ml="വീട്ടുസാധനങ്ങൾ (Households)">ಮನೆಯ ವಸ್ತುಗಳು (Insects)</h3>
+    </div>
+     <div class="category-card" onclick="window.location.href='relations.html'">
+      <img id="img-relations" src="relations.jpg" alt="Relations">
+      <h3 class="multi-lang" data-kn="ಸಂಬಂಧಗಳು (Relations)" data-ml="ബന്ധങ്ങൾ (Relations)">ಸಂಬಂಧಗಳು (Relations)</h3>
+    </div>
+     <div class="category-card" onclick="window.location.href='pronouns.html'">
+      <img id="img-pronouns" src="pronouns.jpg" alt="Pronouns">
+      <h3 class="multi-lang" data-kn="ಸರ್ವನಾಮಗಳು (Pronouns)" data-ml="സർവ്വനാമങ്ങൾ (Pronouns)">ಸರ್ವನಾಮಗಳು (Pronouns)</h3>
+    </div>
+     <div class="category-card" onclick="window.location.href='time.html'">
+      <img id="img-time" src="time.jpg" alt="Time">
+      <h3 class="multi-lang" data-kn="ಸಮಯ (Time)" data-ml="സമയം (Time)">ಸಮಯ (Time)</h3>
+    </div>
+     <div class="category-card" onclick="window.location.href='body.html'">
+      <img id="img-body" src="body.jpg" alt="Body Parts">
+      <h3 class="multi-lang" data-kn="ದೇಹದ ಭಾಗಗಳು (Body Parts)" data-ml="ശരീരഭാഗങ്ങൾ (Body Parts)">ದೇಹದ ಭಾಗಗಳು (Body Parts)</h3>
+    </div>
+     <div class="category-card" onclick="window.location.href='colours.html'">
+      <img id="img-colours" src="colours.jpg" alt="Colours">
+      <h3 class="multi-lang" data-kn="ಬಣ್ಣಗಳು (Colours)" data-ml="നിറങ്ങൾ (Colours)">ಬಣ್ಣಗಳು (Colours)</h3>
+    </div>
+     <div class="category-card" onclick="window.location.href='numbers.html'">
+      <img id="img-numbers" src="numbers.jpg" alt="Numbers">
+      <h3 class="multi-lang" data-kn="ಸಂಖ್ಯೆಗಳು (Numbers)" data-ml="അക്കം (Numbers)">ಸಂಖ್ಯೆಗಳು (Numbers)</h3>
+    </div>
+    <div class="category-card" onclick="window.location.href='verbs.html'">
+      <img id="img-verbs" src="verbs.png" alt="Verbs">
+      <h3 class="multi-lang" data-kn="ಕ್ರಿಯಾಪದಗಳು (Verbs)" data-ml="ക്രിയകൾ (Verbs)">ಕ್ರಿಯಾಪದಗಳು (Verbs)</h3>
+    </div>
+  </div>
+
+   <section class="contribute-section">
+    <h2>Support Us</h2>
+    <p>If you like our work, please consider contributing to help us grow and do more projects in Kodava language.</p>
+    
+    <div class="contribute-container">
+      <div class="form-box">
+  <form id="contact-form" action="https://formspree.io/f/YOUR_EMAIL_HERE" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Message (Optional)"></textarea>
+    <button type="submit" class="btn-pay">Submit Details</button>
+  </form>
+  
+  <div id="thank-you-msg" style="display:none; color: var(--primary-color); font-weight: bold; margin-top: 20px;">
+    <h3>ಧನ್ಯವಾದಗಳು! (Thank You!)</h3>
+    <p>Thank you for visiting our site and for your support.</p>
+  </div>
+</div>
+
+      <div class="qr-box">
+        <p><strong>Scan to Pay</strong></p>
+        <img src="qr.png" alt="UPI QR Code">
+        <p style="font-size: 12px; color: #666;">UPI ID: narasimha86399@ybl</p>
+      </div>
+    </div>
+  </section>
+
+   <footer>
+    <p>Follow us for more updates:</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/kodava_language_script?igsh=OTYzZTZoaXhnb3I3" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com/playlist?list=PLoYEG0G-ici1mWSFXmedwKCGx3awdULQO&si=laaGYW-si_MjzODy" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // Configuration for images if you have language-specific versions
+    const imageMap = {
+      kn: { letters: 'letters.jpg', animals: 'animals.jpg', insects: 'insects.jpg', households: 'households.jpg', relations: 'relations.jpg', pronouns: 'pronouns.jpg', time: 'time.jpg', body: 'body.jpg', colours: 'colours.jpg', numbers: 'numbers.jpg', verbs: 'verbs.jpg'},
+      ml: { letters: 'letters.jpg', animals: 'animals.jpg', insects: 'insects.jpg', households: 'households.jpg', relations: 'relations.jpg', pronouns: 'pronouns.jpg', time: 'time.jpg', body: 'body.jpg', colours: 'colours.jpg', numbers: 'numbers.jpg', verbs: 'verbs.jpg'} // Change these names if you make ML images
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('btn-' + lang).classList.add('active');
+
+      // Update text using data-attributes
+      document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+        el.innerText = el.getAttribute('data-' + lang);
+      });
+
+      // Update images
+      document.getElementById('img-letters').src = imageMap[lang].letters;
+      document.getElementById('img-animals').src = imageMap[lang].animals;
+      document.getElementById('img-insects').src = imageMap[lang].insects;
+      document.getElementById('img-households').src = imageMap[lang].households;
+      document.getElementById('img-relations').src = imageMap[lang].relations;
+      document.getElementById('img-pronouns').src = imageMap[lang].pronouns;
+      document.getElementById('img-time').src = imageMap[lang].time;
+      document.getElementById('img-body').src = imageMap[lang].body;
+      document.getElementById('img-colours').src = imageMap[lang].colours;
+      document.getElementById('img-numbers').src = imageMap[lang].numbers;
+      document.getElementById('img-verbs').src = imageMap[lang].verbs;
+    }
+    
+  </script>
+</body>
+</html>
