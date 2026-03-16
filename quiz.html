@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kodava Padipu - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Kannada:wght@400;700&family=Noto+Serif+Malayalam:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-color: #80004d;
+      --secondary-color: #5d0fee;
+      --light-bg: #fdf2f8;
+    }
+
+    body {
+      font-family: 'Noto Serif Kannada', 'Noto Serif Malayalam', serif;
+      margin: 0;
+      background: #f9f9f9;
+      text-align: center;
+    }
+
+    /* --- Header & Nav --- */
+    header { background: var(--primary-color); color: white; padding: 20px; }
+    .Kodava-logo { width: 80px; margin-bottom: 10px; }
+    
+    nav {
+      background: #eee;
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    nav a { text-decoration: none; color: var(--primary-color); font-weight: bold; }
+
+    /* --- Category Grid --- */
+    .main-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .category-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      cursor: pointer;
+      border: 1px solid #eee;
+    }
+
+    .category-card:hover { transform: translateY(-10px); box-shadow: 0 12px 20px rgba(128,0,77,0.2); }
+    
+    .category-card img { width: 100%; height: 180px; object-fit: cover; }
+    .category-card h3 { padding: 15px; margin: 0; color: var(--primary-color); }
+
+    /* --- Contribution Box --- */
+    .contribute-section {
+      background: var(--light-bg);
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 20px;
+      border: 2px dashed var(--primary-color);
+    }
+
+    .contribute-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .qr-box img { width: 150px; border: 5px solid white; border-radius: 10px; }
+    
+    .form-box { text-align: left; flex: 1; min-width: 250px; }
+    .form-box input, .form-box textarea {
+      width: 100%; padding: 10px; margin: 8px 0;
+      border: 1px solid #ccc; border-radius: 8px;
+    }
+
+    .btn-pay {
+      background: var(--primary-color);
+      color: white; border: none; padding: 12px 25px;
+      border-radius: 5px; cursor: pointer; width: 100%;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: #333; color: white;
+      padding: 40px 20px; margin-top: 50px;
+    }
+    .social-links a {
+      color: white; font-size: 30px; margin: 0 15px;
+      transition: 0.3s;
+    }
+    .social-links a:hover { color: #ff0050; } /* Instagram pink */
+    .youtube:hover { color: #ff0000 !important; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="kodavalogo.png" alt="Logo" class="Kodava-logo">
+    <h1>ಕೊಡವ ಪಡಿಪು (Kodava Padipu)</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="letters.html">Letters</a>
+    <a href="animals.html">Animals</a>
+    <a href="insects.html">Insects</a>
+  </nav>
+<nav>
+    <button id="btn-kn" class="lang-btn active" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+    <button id="btn-ml" class="lang-btn" onclick="setLanguage('ml')">മലയാളം</button>
+  </nav>
+  <div class="main-grid">
+    <div class="category-card" onclick="window.location.href='letters.html'">
+      <img src="letters.jpg" alt="Letters">
+      <h3>ಅಕ್ಷರಗಳು (Letters)</h3>
+    </div>
+
+    <div class="category-card" onclick="window.location.href='animals.html'">
+      <img src="animals.jpg" alt="Animals">
+      <h3>ಪ್ರಾಣಿಗಳು (Animals)</h3>
+    </div>
+
+    <div class="category-card" onclick="window.location.href='insects.html'">
+      <img src="insects.jpg" alt="Insects">
+      <h3>ಕಿಟಗಳು (Insects)</h3>
+    </div>
+  </div>
+
+  <section class="contribute-section">
+    <h2>ಸಹಾಯ ಮಾಡಿ / Support Us</h2>
+    <p>If you like our work, please consider contributing to help us grow.</p>
+    
+    <div class="contribute-container">
+      <div class="form-box">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea placeholder="Message (Optional)"></textarea>
+        <button class="btn-pay">Submit Details</button>
+      </div>
+
+      <div class="qr-box">
+        <p><strong>Scan to Pay</strong></p>
+        <img src="your-qr-code.png" alt="UPI QR Code">
+        <p style="font-size: 12px; color: #666;">UPI ID: yourname@upi</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Follow us for more updates:</p>
+    <div class="social-links">
+      <a href="https://instagram.com/yourhandle" target="_blank" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://youtube.com/yourchannel" target="_blank" title="YouTube" class="youtube">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+    <p style="margin-top: 20px; font-size: 14px; opacity: 0.7;">© 2024 Kodava Padipu. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
