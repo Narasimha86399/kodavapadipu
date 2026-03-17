@@ -40,6 +40,7 @@
     nav {
       background: #eee;
       padding: 20px;
+      position: sticky;
       top: 0;
       z-index: 100;
       display: flex;
@@ -228,22 +229,23 @@
 
    <section class="contribute-section">
     <h2>Support Us</h2>
-    <p>If you like our work, please consider contributing to help us grow and do more projects in Kodava language.</p>
+    <p>If you like our work, please consider contributing to help us grow and do more projects in Kodava Takk.</p>
     
     <div class="contribute-container">
       <div class="form-box">
-  <form id="contact-form" action="https://formspree.io/f/YOUR_EMAIL_HERE" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Message (Optional)"></textarea>
-    <button type="submit" class="btn-pay">Submit Details</button>
-  </form>
-  
-  <div id="thank-you-msg" style="display:none; color: var(--primary-color); font-weight: bold; margin-top: 20px;">
-    <h3>ಧನ್ಯವಾದಗಳು! (Thank You!)</h3>
-    <p>Thank you for visiting our site and for your support.</p>
-  </div>
-</div>
+        <form id="contact-form" action="https://formspree.io/f/xlgppqdw" method="POST">
+          <input type="text" name="name" id="user-name" placeholder="Your Name" required>
+          <input type="email" name="email" id="user-email" placeholder="Your Email" required>
+          <textarea name="message" id="user-msg" placeholder="Message (Optional)"></textarea>
+          <button type="submit" id="submit-btn" class="btn-pay">Submit Details</button>
+        </form>
+        
+        <div id="thank-you-msg" style="display:none; color: var(--primary-color); padding: 20px; border: 1px solid #ddd; border-radius: 10px; background: white; margin-top: 10px;">
+          <h3 style="margin: 0 0 10px 0;">Thank You!</h3>
+          <p style="margin: 0;">Thank you for watching our website and supporting us. Stay tuned for more updates!</p>
+          <button onclick="resetForm()" style="margin-top: 10px; background: none; border: 1px solid #80004d; color: #80004d; cursor: pointer; border-radius: 5px; padding: 5px 10px;">Send another message</button>
+        </div>
+      </div>
 
       <div class="qr-box">
         <p><strong>Scan to Pay</strong></p>
@@ -258,6 +260,7 @@
     <div class="social-links">
       <a href="https://www.instagram.com/kodava_language_script?igsh=OTYzZTZoaXhnb3I3" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="https://youtube.com/playlist?list=PLoYEG0G-ici1mWSFXmedwKCGx3awdULQO&si=laaGYW-si_MjzODy" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+      <a href="https://t.me/kodavalanguage" target="_blank" class="telegram"><i class="fab fa-telegram"></i></a>
     </div>
   </footer>
 
@@ -291,6 +294,37 @@
       document.getElementById('img-verbs').src = imageMap[lang].verbs;
     }
     
+ const contactForm = document.getElementById('contact-form');
+    const thankYouMsg = document.getElementById('thank-you-msg');
+
+    contactForm.addEventListener("submit", function(event) {
+      event.preventDefault(); // Stop page from refreshing
+      
+      const data = new FormData(event.target);
+      
+      // Send data to Formspree
+      fetch(event.target.action, {
+        method: contactForm.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          // Success! Hide form and show thank you
+          contactForm.style.display = "none";
+          thankYouMsg.style.display = "block";
+          contactForm.reset();
+        } else {
+          alert("Oops! There was a problem submitting your form");
+        }
+      }).catch(error => {
+        alert("Oops! There was a problem connecting to the server");
+      });
+    });
+
+    function resetForm() {
+      contactForm.style.display = "block";
+      thankYouMsg.style.display = "none";
+    }
   </script>
 </body>
 </html>
