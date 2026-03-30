@@ -76,6 +76,7 @@
     .nav-numbers { background-color: #8de763; }
     .nav-verbs { background-color: #79261b; }
     .nav-world { background-color: #0e5f2d; }
+    .nav-occupations { background-color: #051041; }
     /* --- Language Toggle --- */
     .lang-nav { background: #f2f2f2; border-bottom: 1px solid #ddd; padding: 10px; }
     .lang-btn {
@@ -171,6 +172,7 @@
     <a href="numbers.html" class="nav-box nav-numbers"><i class="fas fa-list-ol"></i> Numbers</a>
     <a href="verbs.html" class="nav-box nav-verbs"><i class="fas fa-running"></i> Verbs</a>
     <a href="world.html" class="nav-box nav-world"><i class="fas fa-globe"></i> World</a>
+    <a href="occupations.html" class="nav-box nav-world"><i class="fas fa-tools"></i> Occupations</a>
   </nav>
 
   <div class="lang-nav">
@@ -229,6 +231,10 @@
       <img id="img-world" src="world.jpg" alt="world">
       <h3 class="multi-lang" data-kn="ವಿಶ್ವ (World)" data-ml="ലോകം (World)">ವಿಶ್ವ (World)</h3>
     </div>
+    <div class="category-card" onclick="window.location.href='occupations.html'">
+      <img id="img-occupations" src="occupations.jpg" alt="occupations">
+      <h3 class="multi-lang" data-kn="ವೃತ್ತಿ (Occupations)" data-ml="തൊഴിൽ (Occupations)">ವೃತ್ತಿ (Occupations)</h3>
+    </div>
   </div>
 
    <section class="contribute-section">
@@ -271,8 +277,8 @@
   <script>
     // Configuration for images if you have language-specific versions
     const imageMap = {
-      kn: { letters: 'letters.jpg', animals: 'animals.jpg', insects: 'insects.jpg', households: 'households.jpg', relations: 'relations.jpg', pronouns: 'pronouns.jpg', time: 'time.jpg', body: 'body.jpg', colours: 'colours.jpg', numbers: 'numbers.jpg', verbs: 'verbs.jpg', world: 'world.jpg'},
-      ml: { letters: 'letters.jpg', animals: 'animals.jpg', insects: 'insects.jpg', households: 'households.jpg', relations: 'relations.jpg', pronouns: 'pronouns.jpg', time: 'time.jpg', body: 'body.jpg', colours: 'colours.jpg', numbers: 'numbers.jpg', verbs: 'verbs.jpg', world: 'world.jpg'} // Change these names if you make ML images
+      kn: { letters: 'letters.jpg', animals: 'animals.jpg', insects: 'insects.jpg', households: 'households.jpg', relations: 'relations.jpg', pronouns: 'pronouns.jpg', time: 'time.jpg', body: 'body.jpg', colours: 'colours.jpg', numbers: 'numbers.jpg', verbs: 'verbs.jpg', world: 'world.jpg', occupations: 'occupations.jpg'},
+      ml: { letters: 'letters.jpg', animals: 'animals.jpg', insects: 'insects.jpg', households: 'households.jpg', relations: 'relations.jpg', pronouns: 'pronouns.jpg', time: 'time.jpg', body: 'body.jpg', colours: 'colours.jpg', numbers: 'numbers.jpg', verbs: 'verbs.jpg', world: 'world.jpg', occupations: 'occupations.jpg'} // Change these names if you make ML images
     };
 
     function setLanguage(lang) {
@@ -297,6 +303,7 @@
       document.getElementById('img-numbers').src = imageMap[lang].numbers;
       document.getElementById('img-verbs').src = imageMap[lang].verbs;
       document.getElementById('img-world').src = imageMap[lang].world;
+       document.getElementById('img-occupations').src = imageMap[lang].occupations;
     }
     
  const contactForm = document.getElementById('contact-form');
